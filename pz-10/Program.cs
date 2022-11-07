@@ -6,10 +6,10 @@ namespace pz_10
 	{
 		public static void Main(string[] args)
 		{
-			Console.Write("Enter the string A: "); // "some text some"
+			Console.Write("Enter the string A: "); 
 			string a = Console.ReadLine();
 			
-			Console.Write("Enter the string B: "); // "text"
+			Console.Write("Enter the string B: "); 
 			string b = Console.ReadLine();
 			
 			if(a.Contains(b))
