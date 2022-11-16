@@ -40,7 +40,7 @@
                 symbols[i] = Convert.ToChar(strs[i]);
             }
 
-            Console.WriteLine(FrequentlyUsedSymbol(symbols));
+            Console.WriteLine($"The most frequently used symbol: {FrequentlyUsedSymbol(symbols)}");
         }
     }
 }
