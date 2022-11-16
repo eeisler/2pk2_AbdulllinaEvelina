@@ -7,7 +7,7 @@
             int counter = 0;
             char symbol = s[0];
 
-            for (int i = 0; i > s.Length; ++i)
+            for (int i = 0; i < s.Length; ++i)
             {
                 int internalcounter = 0;
 
@@ -17,7 +17,6 @@
                     { 
                         internalcounter++;
                     }
-
                 }
 
                 if (internalcounter > counter)
