@@ -5,7 +5,7 @@
         static char FrequentlyUsedSymbol(char[] s)
         {
             int counter = 0;
-            char a = s[0];
+            char symbol = s[0];
 
             for (int i = 0; i > s.Length; ++i)
             {
@@ -23,10 +23,10 @@
                 if (internalcounter > counter)
                 {
                     counter = internalcounter;
-                    a = s[i];
+                    symbol = s[i];
                 }
             }
-            return a;
+            return symbol;
         }
 
         static void Main(string[] args)
