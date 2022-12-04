@@ -86,45 +86,69 @@ namespace mini_game
         {
             for (int row = 0; row < mapSize; ++row)
             {
-                if (row == 0 || row == mapSize - 1)
+                if (row == 0)
                 {
-                    Console.WriteLine("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+                    Console.WriteLine(" __________________________________________________");
                 } 
+
+                else if (row == mapSize - 1)
+                {
+                    Console.WriteLine(" __________________________________________________");
+                    //Console.WriteLine(" ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
+                }
                 else
                 {
-                    for (int column = 0; column < mapSize; ++column)
+                    Console.Write("|");
+
+                    for (int column = 0; column < mapSize; ++column) 
                     {
-                        Console.Write("|" + map[row, column]);
-
+                        
+                        Console.Write(map[row, column] + " ");
                     }
-                    Console.WriteLine();
+                    Console.WriteLine("|");
                 }
+            }
 
-                //for (int column = 0; column < mapSize; ++column)
-                //{
-                //    if (column == 0)
-                //    {
-                //        Console.WriteLine(" ------------------------ ");
-                //    }
-                //}
+            /* 
+             * p - ☻ - white
+             * e - ■ - red
+             * b - ✦ - yellow
+             * h - ♥ - blue
+             */
+            for(int row = 0; row < mapSize; ++row)
+            {
+                for(int column = 0; column < mapSize; ++column)
+                {
+                    switch(map[row, column])
+                    {
+                        case 'p':
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write('☻');
+                            break;
+                        case 'h':
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write('♥');
+                            break;
+                        case 'e':
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            map[row, column] = '■';
+                            break;
+                        case 'b':
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write('✦');
+                            break;
+                    }
+                }
             }
         }
 
-
+        
 
         static void Main(string[] args)
         {
             char[,] mAp = GenerateMap();
-
-            //for(int i = 0; i < mapSize; ++i)
-            //{
-            //    for(int j = 0; j < mapSize; ++j)
-            //    {
-            //        Console.Write(mAp[i, j] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
             PrintMap(mAp);
+            Console.ReadKey();
         }
     }
 }
