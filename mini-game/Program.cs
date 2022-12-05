@@ -12,7 +12,7 @@ namespace mini_game
         static int mapSize = 25;
         static Random rnd = new Random();
         static bool buffFlag = false;
-        static int[] playerPosition = new int[2] { 12, 12 };
+        static int[] playerPosition = new int[2] {12, 12};
         static char[,] map = new char[mapSize, mapSize]; 
         static int enemiesCount = 10;
         static int healingsCount = 5;
@@ -21,14 +21,15 @@ namespace mini_game
         
         public static char[,] GenerateMap()
         {
-
+            //нужно запомнить координаты объектов, чтобы обновлять карту.CreateCoords(); - i don't know this 
+            //каждый раз выводится разное количество объектов 
             for (int row = 0; row < mapSize; ++row)
             {
                 for (int column = 0; column < mapSize; ++column)
                 {
                     if (row == playerPosition[0] && column == playerPosition[1])
                     {
-                        map[row, column] = 'p';
+                        map[row, column] = '▲';
                     }
                     else
                     {
@@ -48,7 +49,7 @@ namespace mini_game
                     enemyY = rnd.Next(mapSize);
                 }
 
-                map[enemyX, enemyY] = 'e';
+                map[enemyX, enemyY] = '■';
             }
 
             for (int heal = 0; heal < healingsCount; ++heal)
@@ -62,8 +63,7 @@ namespace mini_game
                     healY = rnd.Next(mapSize);
                 }
 
-                map[healX, healY] = 'h';
-
+                map[healX, healY] = '♥';
             }
 
             for (int buff = 0; buff < buffsCount; ++buff)
@@ -76,76 +76,58 @@ namespace mini_game
                     buffX = rnd.Next(mapSize);
                     buffY = rnd.Next(mapSize);
                 }
-                map[buffX, buffY] = 'b';
-            }
-
-            /* 
-             * p - ☻ - white
-             * e - ■ - red
-             * b - ✦ - yellow
-             * h - ♥ - blue
-             */
-            for(int row = 0; row < mapSize; ++row) // colors don't work
-            {
-                for(int column = 0; column < mapSize; ++column)
-                {
-                    /*if (map[row, column] == 'p') Console.ForegroundColor = ConsoleColor.Blue;
-                    if (map[row, column] == 'e') Console.ForegroundColor = ConsoleColor.Red;
-                    if (map[row, column] == 'h') Console.ForegroundColor = ConsoleColor.Green;
-                    if (map[row, column] == 'b') Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write($"{map[row, column]} ");*/
-
-                    switch(map[row, column])
-                    {
-                        case 'p':
-                            //Console.ForegroundColor = ConsoleColor.Green;
-                            map[row, column] = ('▲');
-                            break;
-                        case 'h':
-                            //Console.ForegroundColor = ConsoleColor.Blue;
-                            map[row, column] = ('♥');
-                            break;
-                        case 'e':
-                            //Console.ForegroundColor = ConsoleColor.Red;
-                            map[row, column] = ('■');
-                            break;
-                        case 'b':
-                            //Console.ForegroundColor = ConsoleColor.Yellow;
-                            map[row, column] = ('♦');
-                            break;
-                        Console.Write($"{map[row, column]} ");
-                    }
-                }
+                map[buffX, buffY] = '♦';
             }
             return map;
         }
-
-        public static void PrintMap(char[,] map)
+        
+        public static void PrintMap(char[,] map)//done
         {
+            /* 
+            * p - '▲' - white
+            * e - '■' - red
+            * b - '♦' - yellow
+            * h - '♥' - blue
+            */
             for (int row = 0; row < mapSize; ++row)
             {
                 if (row == 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(" __________________________________________________");
                 } 
-
                 else if (row == mapSize - 1)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(" __________________________________________________");
-                }
+                } 
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.Write("|");
-
                     for (int column = 0; column < mapSize; ++column) 
                     {
-                        Console.Write(map[row, column] + " ");//-----------------------------------------------!!!
+                        if (map[row, column] == '▲') Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        if (map[row, column] == '■') Console.ForegroundColor = ConsoleColor.DarkRed;
+                        if (map[row, column] == '♥') Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        if (map[row, column] == '♦') Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write(map[row, column] + " ");
                     }
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("|");
                 }
             }
         }
-        static void Move2()
+        public static void UpdateMap()//to do
+        {
+            /*
+             * Чтобы после проигрыша закрывалось поле и выводилось сообщение о проигрыше
+             * В начале игры выводилось приветственное сообщение, а поле не выводилось пока нет команды start
+             */
+            Console.Clear();
+
+        }
+        static void Move()
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
@@ -167,21 +149,20 @@ namespace mini_game
                     map[playerPosition[0], playerPosition[1]] = ' ';
                     map[playerPosition[0], playerPosition[1] + 1] = '▶';
                     break;
-
             }
         }
-        public static void Buffs()
+        public static void Buffs()//in process
         {
-            if (map[playerPosition[0], playerPosition[1]] == 'b')
+            if (map[playerPosition[0], playerPosition[1]] == '♦')
             {
                 buffFlag = true;
                 playersPower = 10;
             }
         }
 
-        public static void Fight()
+        public static void Fight()//in process
         {
-            if (map[playerPosition[0], playerPosition[1]] == 'e')
+            if (map[playerPosition[0], playerPosition[1]] == '■')
             {
                  while (enemysHP > 0)
                  {
@@ -199,11 +180,60 @@ namespace mini_game
             }
         }
 
+        static int triesCounter = 1;
+        public static string Hello(string s)//i was just bored :)
+        {
+            if (s == "start")
+            {
+                Console.WriteLine("Wish you luck! Enjoy the game :)");
+                char[,] mAp = GenerateMap();
+                PrintMap(mAp);
+            }
+            else
+            {
+                switch (triesCounter)
+                {
+                    case 1:
+                        triesCounter++;
+                        Console.WriteLine("It's ok :) When you'll be ready, please, enter {start}");
+                        Hello(Console.ReadLine());
+                        break;
+                    case 2:
+                        triesCounter++;
+                        Console.WriteLine("Just enter {start}, when you're ready.");
+                        Hello(Console.ReadLine());
+                        break;
+                    case 3:
+                        triesCounter++;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Enter {start} :)");
+                        Hello(Console.ReadLine());
+                        break;
+                    case 4:
+                        triesCounter++;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("JUST. ENTER. {START}.");
+                        Hello(Console.ReadLine());
+                        break;
+                    case 5:
+                        triesCounter++;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("GET F*CKING OUT!");
+                        break;
+                }   
+            }
+            return s;
+        }
+
         static void Main(string[] args)
         {
-            char[,] mAp = GenerateMap();
-            PrintMap(mAp);
-            Move2();
+            Console.WriteLine("Hello! Welcome to the {game's name}! If you're ready to start enter {start}"); //name of the game
+
+            string startWord = Console.ReadLine();
+            Hello(startWord);
+            
+            Move();
+            UpdateMap();
             Console.ReadKey();
         }
     }
