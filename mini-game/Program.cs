@@ -218,7 +218,7 @@ namespace mini_game
                     case 5:
                         triesCounter++;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("GET F*CKING OUT!");
+                        Console.WriteLine("GET OUT!");
                         break;
                 }   
             }
@@ -232,7 +232,8 @@ namespace mini_game
             string startWord = Console.ReadLine();
             Hello(startWord);
             
-            Move();
+            Move
+                ();
             UpdateMap();
             Console.ReadKey();
         }
