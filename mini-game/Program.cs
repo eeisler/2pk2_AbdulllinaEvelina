@@ -5,28 +5,28 @@ namespace mini_game
 {
     internal class Program
     {
-        int playersHP = 30;
-        int playersPower = 5;
-        int enemiesPower = 5;
+        static int playersHP = 30;
+        static int enemysHP = 15;
+        static int playersPower = 5;
+        static int enemiesPower = 5;
         static int mapSize = 25;
         static Random rnd = new Random();
+        static bool buffFlag = false;
+        static int[] playerPosition = new int[2] { 12, 12 };
+        static char[,] map = new char[mapSize, mapSize]; 
+        static int enemiesCount = 10;
+        static int healingsCount = 5;
+        static int buffsCount = 3;
+        static bool gameFlag = true;
         
         public static char[,] GenerateMap()
         {
-            char[,] map = new char[mapSize, mapSize]; 
-
-            int playerX = 12;
-            int playerY = 12;
-
-            int enemiesCount = 10;
-            int healingsCount = 5;
-            int buffsCount = 3;
 
             for (int row = 0; row < mapSize; ++row)
             {
                 for (int column = 0; column < mapSize; ++column)
                 {
-                    if (row == playerX && column == playerY)
+                    if (row == playerPosition[0] && column == playerPosition[1])
                     {
                         map[row, column] = 'p';
                     }
@@ -79,6 +79,37 @@ namespace mini_game
                 map[buffX, buffY] = 'b';
             }
 
+            /* 
+             * p - ☻ - white
+             * e - ■ - red
+             * b - ✦ - yellow
+             * h - ♥ - blue
+             */
+            for(int row = 0; row < mapSize; ++row) // colors don't work
+            {
+                for(int column = 0; column < mapSize; ++column)
+                {
+                    switch(map[row, column])
+                    {
+                        case 'p':
+                            //Console.ForegroundColor = ConsoleColor.Green;
+                            map[row, column] = ('▲');
+                            break;
+                        case 'h':
+                            //Console.ForegroundColor = ConsoleColor.Blue;
+                            map[row, column] = ('♥');
+                            break;
+                        case 'e':
+                            //Console.ForegroundColor = ConsoleColor.Red;
+                            map[row, column] = ('■');
+                            break;
+                        case 'b':
+                            //Console.ForegroundColor = ConsoleColor.Yellow;
+                            map[row, column] = ('♦');
+                            break;
+                    }
+                }
+            }
             return map;
         }
 
@@ -94,7 +125,6 @@ namespace mini_game
                 else if (row == mapSize - 1)
                 {
                     Console.WriteLine(" __________________________________________________");
-                    //Console.WriteLine(" ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
                 }
                 else
                 {
@@ -102,47 +132,64 @@ namespace mini_game
 
                     for (int column = 0; column < mapSize; ++column) 
                     {
-                        
                         Console.Write(map[row, column] + " ");
                     }
                     Console.WriteLine("|");
                 }
             }
+        }
 
-            /* 
-             * p - ☻ - white
-             * e - ■ - red
-             * b - ✦ - yellow
-             * h - ♥ - blue
-             */
-            for(int row = 0; row < mapSize; ++row)
+        public void Move(System.ConsoleKey direction) // ▶ ◀ ▼ ▲
+        {
+            switch (direction)
             {
-                for(int column = 0; column < mapSize; ++column)
-                {
-                    switch(map[row, column])
-                    {
-                        case 'p':
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write('☻');
-                            break;
-                        case 'h':
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write('♥');
-                            break;
-                        case 'e':
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            map[row, column] = '■';
-                            break;
-                        case 'b':
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write('✦');
-                            break;
-                    }
-                }
+                case ConsoleKey.UpArrow:
+                    playerPosition[0] += 1;
+                    map[playerPosition[0] + 1, playerPosition[1]] = ' ';
+                    map[playerPosition[0], playerPosition[1]] = '▲';
+                    break;
+                case ConsoleKey.DownArrow:
+                    map[playerPosition[0] - 1, playerPosition[1]] = ' ';
+                    map[playerPosition[0], playerPosition[1]] = '▼';
+                    break;
+                case ConsoleKey.LeftArrow:
+                    map[playerPosition[0], playerPosition[1] - 1] = ' ';
+                    map[playerPosition[0], playerPosition[1]] = '◀';
+                    break;
+                case ConsoleKey.RightArrow:
+                    map[playerPosition[0], playerPosition[1] + 1] = ' ';
+                    map[playerPosition[0], playerPosition[1]] = '▶';
+                    break;
+            }
+        }
+        public static void Buffs()
+        {
+            if (map[playerPosition[0], playerPosition[1]] == 'b')
+            {
+                buffFlag = true;
+                playersPower = 10;
             }
         }
 
-        
+        public static void Fight()
+        {
+            if (map[playerPosition[0], playerPosition[1]] == 'e')
+            {
+                 while (enemysHP > 0)
+                 {
+                     enemysHP -= playersPower;
+                     playersHP -= enemiesPower;
+                 }
+                 if (playerHP <= 0)
+                 {
+                     gameFlag = false;
+                 }
+                 else 
+                 {
+                     enemiesCount--;
+                 }
+            }
+        }
 
         static void Main(string[] args)
         {
