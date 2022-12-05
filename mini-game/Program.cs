@@ -89,6 +89,12 @@ namespace mini_game
             {
                 for(int column = 0; column < mapSize; ++column)
                 {
+                    /*if (map[row, column] == 'p') Console.ForegroundColor = ConsoleColor.Blue;
+                    if (map[row, column] == 'e') Console.ForegroundColor = ConsoleColor.Red;
+                    if (map[row, column] == 'h') Console.ForegroundColor = ConsoleColor.Green;
+                    if (map[row, column] == 'b') Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"{map[row, column]} ");*/
+
                     switch(map[row, column])
                     {
                         case 'p':
@@ -107,6 +113,7 @@ namespace mini_game
                             //Console.ForegroundColor = ConsoleColor.Yellow;
                             map[row, column] = ('♦');
                             break;
+                        Console.Write($"{map[row, column]} ");
                     }
                 }
             }
@@ -132,34 +139,35 @@ namespace mini_game
 
                     for (int column = 0; column < mapSize; ++column) 
                     {
-                        Console.Write(map[row, column] + " ");
+                        Console.Write(map[row, column] + " ");//-----------------------------------------------!!!
                     }
                     Console.WriteLine("|");
                 }
             }
         }
-
-        public void Move(System.ConsoleKey direction) // ▶ ◀ ▼ ▲
+        static void Move2()
         {
-            switch (direction)
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
-                    playerPosition[0] += 1;
-                    map[playerPosition[0] + 1, playerPosition[1]] = ' ';
-                    map[playerPosition[0], playerPosition[1]] = '▲';
+                    map[playerPosition[0], playerPosition[1]] = ' ';
+                    map[playerPosition[0] + 1, playerPosition[1]] = '▲';
                     break;
                 case ConsoleKey.DownArrow:
-                    map[playerPosition[0] - 1, playerPosition[1]] = ' ';
-                    map[playerPosition[0], playerPosition[1]] = '▼';
+                    map[playerPosition[0], playerPosition[1]] = ' ';
+                    map[playerPosition[0] - 1, playerPosition[1]] = '▼';
                     break;
                 case ConsoleKey.LeftArrow:
-                    map[playerPosition[0], playerPosition[1] - 1] = ' ';
-                    map[playerPosition[0], playerPosition[1]] = '◀';
+                    map[playerPosition[0], playerPosition[1]] = ' ';
+                    map[playerPosition[0], playerPosition[1] - 1] = '◀';
                     break;
                 case ConsoleKey.RightArrow:
-                    map[playerPosition[0], playerPosition[1] + 1] = ' ';
-                    map[playerPosition[0], playerPosition[1]] = '▶';
+                    map[playerPosition[0], playerPosition[1]] = ' ';
+                    map[playerPosition[0], playerPosition[1] + 1] = '▶';
                     break;
+
             }
         }
         public static void Buffs()
@@ -180,7 +188,7 @@ namespace mini_game
                      enemysHP -= playersPower;
                      playersHP -= enemiesPower;
                  }
-                 if (playerHP <= 0)
+                 if (playersHP <= 0)
                  {
                      gameFlag = false;
                  }
@@ -195,6 +203,7 @@ namespace mini_game
         {
             char[,] mAp = GenerateMap();
             PrintMap(mAp);
+            Move2();
             Console.ReadKey();
         }
     }
