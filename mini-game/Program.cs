@@ -5,28 +5,44 @@ namespace mini_game
 {
     internal class Program
     {
+        // Default variables
         static int playersHP = 30;
-        static int enemysHP = 15;
         static int playersPower = 5;
-        static int enemiesPower = 5;
-        static int mapSize = 25;
-        static Random rnd = new Random();
-        static bool buffFlag = false;
         static int[] playerPosition = new int[2] {12, 12};
-        static char[,] map = new char[mapSize, mapSize]; 
+        
+        static int enemysHP = 15;
+        static int enemiesPower = 5;
         static int enemiesCount = 10;
-        static int healingsCount = 5;
+        static int[] enemiesHealths =
+        {
+            enemysHP, enemysHP,
+            enemysHP, enemysHP,
+            enemysHP, enemysHP,
+            enemysHP, enemysHP,
+            enemysHP, enemysHP
+        };
+        static int enemiesKilled = 0;
+        
+        static int mapSize = 25;
+        static char[,] map = new char[mapSize, mapSize]; 
+        
+        static Random rnd = new Random();
+        
+        static bool buffFlag = false;
         static int buffsCount = 3;
+        static int buffsTime = 0;
+        
+        static int healingsCount = 5;
+        
         static bool gameFlag = true;
         
         public static char[,] GenerateMap()
         {
-            //нужно запомнить координаты объектов, чтобы обновлять карту.CreateCoords(); - i don't know this 
-            //каждый раз выводится разное количество объектов 
             for (int row = 0; row < mapSize; ++row)
             {
                 for (int column = 0; column < mapSize; ++column)
                 {
+                    // If cell is a player position then write a triangle
                     if (row == playerPosition[0] && column == playerPosition[1])
                     {
                         map[row, column] = '▲';
@@ -43,7 +59,7 @@ namespace mini_game
                 int enemyX = rnd.Next(mapSize);
                 int enemyY = rnd.Next(mapSize);
 
-                while (map[enemyX, enemyY] != ' ')
+                while (map[enemyX, enemyY] != ' ') // If cell is not empty then generate new random values
                 {
                     enemyX = rnd.Next(mapSize);
                     enemyY = rnd.Next(mapSize);
@@ -57,7 +73,7 @@ namespace mini_game
                 int healX = rnd.Next(mapSize);
                 int healY = rnd.Next(mapSize);
 
-                while (map[healX, healY] != ' ')
+                while (map[healX, healY] != ' ') // If cell is not empty then generate new random values
                 {
                     healX = rnd.Next(mapSize);
                     healY = rnd.Next(mapSize);
@@ -71,7 +87,7 @@ namespace mini_game
                 int buffX = rnd.Next(mapSize);
                 int buffY = rnd.Next(mapSize);
 
-                while (map[buffX, buffY] != ' ')
+                while (map[buffX, buffY] != ' ') // If cell is not empty then generate new random values
                 {
                     buffX = rnd.Next(mapSize);
                     buffY = rnd.Next(mapSize);
@@ -81,13 +97,13 @@ namespace mini_game
             return map;
         }
         
-        public static void PrintMap(char[,] map)//done
+        public static void PrintMap(char[,] map)
         {
             /* 
-            * p - '▲' - white
-            * e - '■' - red
-            * b - '♦' - yellow
-            * h - '♥' - blue
+                * p - '▲' - white
+                * e - '■' - red
+                * b - '♦' - yellow
+                * h - '♥' - blue
             */
             for (int row = 0; row < mapSize; ++row)
             {
@@ -107,81 +123,130 @@ namespace mini_game
                     Console.Write("|");
                     for (int column = 0; column < mapSize; ++column) 
                     {
-                        if (map[row, column] == '▲') Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         if (map[row, column] == '■') Console.ForegroundColor = ConsoleColor.DarkRed;
                         if (map[row, column] == '♥') Console.ForegroundColor = ConsoleColor.DarkGreen;
                         if (map[row, column] == '♦') Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write(map[row, column] + " ");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("|");
                 }
             }
+            Console.WriteLine($"HP: {playersHP}\nEnemies: {enemiesCount}\nPower: {playersPower}\nBuff's Time: {buffsTime}");
         }
-        public static void UpdateMap()//to do
+        public static void UpdateMap()
         {
-            /*
-             * Чтобы после проигрыша закрывалось поле и выводилось сообщение о проигрыше
-             * В начале игры выводилось приветственное сообщение, а поле не выводилось пока нет команды start
-             */
             Console.Clear();
+            
+            if (gameFlag)
+            {
+                PrintMap(map);
+                Move();
+            }
+            else
+            {
+                Console.WriteLine("You loose the game :)!");
+            }
 
         }
         static void Move()
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
+            char prevItem = ' ';
+            
+            if (buffFlag)
+            {
+                buffsTime++;
+            }
+            
+            if (buffsTime >= 5 && buffFlag)
+            {
+                buffsTime = 0;
+                buffFlag = false;
+                playersPower = 5;
+            }
+            
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
+                    prevItem = map[playerPosition[0] - 1, playerPosition[1]];
                     map[playerPosition[0], playerPosition[1]] = ' ';
-                    map[playerPosition[0] + 1, playerPosition[1]] = '▲';
+                    map[playerPosition[0] - 1, playerPosition[1]] = '▲';
+                    playerPosition[0] -= 1;
                     break;
                 case ConsoleKey.DownArrow:
+                    prevItem = map[playerPosition[0] + 1, playerPosition[1]];
                     map[playerPosition[0], playerPosition[1]] = ' ';
-                    map[playerPosition[0] - 1, playerPosition[1]] = '▼';
+                    map[playerPosition[0] + 1, playerPosition[1]] = '▼';
+                    playerPosition[0] += 1;
                     break;
                 case ConsoleKey.LeftArrow:
+                    prevItem = map[playerPosition[0], playerPosition[1] - 1];
                     map[playerPosition[0], playerPosition[1]] = ' ';
                     map[playerPosition[0], playerPosition[1] - 1] = '◀';
+                    playerPosition[1] -= 1;
                     break;
                 case ConsoleKey.RightArrow:
+                    prevItem = map[playerPosition[0], playerPosition[1] + 1];
                     map[playerPosition[0], playerPosition[1]] = ' ';
                     map[playerPosition[0], playerPosition[1] + 1] = '▶';
+                    playerPosition[1] += 1;
                     break;
             }
-        }
-        public static void Buffs()//in process
-        {
-            if (map[playerPosition[0], playerPosition[1]] == '♦')
+
+            switch (prevItem)
             {
-                buffFlag = true;
-                playersPower = 10;
+                case '■':
+                    Fight();
+                    break;
+                case '♦':
+                    buffFlag = true;
+                    Buffs();
+                    break; 
+                case '♥':
+                    Heal();
+                    break;
             }
+            
+            UpdateMap();
         }
 
-        public static void Fight()//in process
+        public static void Heal()
         {
-            if (map[playerPosition[0], playerPosition[1]] == '■')
-            {
-                 while (enemysHP > 0)
-                 {
-                     enemysHP -= playersPower;
-                     playersHP -= enemiesPower;
-                 }
+            playersHP = 30;
+        }
+        public static void Buffs()
+        {
+            buffFlag = true;
+            playersPower = 10;
+            
+        }
+
+        public static void Fight()
+        {
+             while (enemiesHealths[enemiesKilled] > 0)
+             {
+                 enemiesHealths[enemiesKilled] -= playersPower;
+                 playersHP -= enemiesPower;
+                 
                  if (playersHP <= 0)
                  {
                      gameFlag = false;
+                     break;
                  }
-                 else 
+
+                 if (enemiesHealths[enemiesKilled] <= 0)
                  {
+                     enemiesKilled++;
                      enemiesCount--;
+                     break;
                  }
-            }
+             }
         }
 
         static int triesCounter = 1;
-        public static string Hello(string s)//i was just bored :)
+        public static string Hello(string s)
         {
             if (s == "start")
             {
@@ -232,8 +297,7 @@ namespace mini_game
             string startWord = Console.ReadLine();
             Hello(startWord);
             
-            Move
-                ();
+            Move();
             UpdateMap();
             Console.ReadKey();
         }
