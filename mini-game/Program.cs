@@ -156,7 +156,7 @@ namespace mini_game
 
             char prevItem = ' ';
             
-            if (buffFlag)
+            if (buffFlag) 
             {
                 buffsTime++;
             }
@@ -236,7 +236,7 @@ namespace mini_game
                      break;
                  }
 
-                 if (enemiesHealths[enemiesKilled] <= 0)
+                 if (enemiesHealths[enemiesKilled] <= 0) // Counting killed enemies 
                  {
                      enemiesKilled++;
                      enemiesCount--;
@@ -292,7 +292,7 @@ namespace mini_game
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello! Welcome to the {game's name}! If you're ready to start enter {start}"); //name of the game
+            Console.WriteLine("Hello! Welcome to the {DO NOT ENTER START} game! If you're ready to start enter {start}"); //name of the game
 
             string startWord = Console.ReadLine();
             Hello(startWord);
