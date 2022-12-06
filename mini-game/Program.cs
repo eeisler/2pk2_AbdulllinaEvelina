@@ -36,7 +36,7 @@ namespace mini_game
         
         static bool gameFlag = true;
         
-        public static char[,] GenerateMap()
+        public static char[,] GenerateMap() // Generating the map
         {
             for (int row = 0; row < mapSize; ++row)
             {
@@ -97,7 +97,7 @@ namespace mini_game
             return map;
         }
         
-        public static void PrintMap(char[,] map)
+        public static void PrintMap(char[,] map) // Printing earlier generated map
         {
             /* 
                 * p - '▲' - white
