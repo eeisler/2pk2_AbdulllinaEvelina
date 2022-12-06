@@ -103,7 +103,7 @@ namespace mini_game
                 * p - '▲' - white
                 * e - '■' - red
                 * b - '♦' - yellow
-                * h - '♥' - blue
+                * h - '♥' - green
             */
             for (int row = 0; row < mapSize; ++row)
             {
@@ -134,6 +134,7 @@ namespace mini_game
             }
             Console.WriteLine($"HP: {playersHP}\nEnemies: {enemiesCount}\nPower: {playersPower}\nBuff's Time: {buffsTime}");
         }
+
         public static void UpdateMap()
         {
             Console.Clear();
@@ -147,8 +148,8 @@ namespace mini_game
             {
                 Console.WriteLine("You loose the game :)!");
             }
-
         }
+
         static void Move()
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -208,7 +209,6 @@ namespace mini_game
                     Heal();
                     break;
             }
-            
             UpdateMap();
         }
 
@@ -216,11 +216,11 @@ namespace mini_game
         {
             playersHP = 30;
         }
+
         public static void Buffs()
         {
             buffFlag = true;
             playersPower = 10;
-            
         }
 
         public static void Fight()
