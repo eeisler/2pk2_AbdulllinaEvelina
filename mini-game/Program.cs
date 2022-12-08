@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace mini_game
 {
@@ -92,44 +93,72 @@ namespace mini_game
                     buffX = rnd.Next(mapSize);
                     buffY = rnd.Next(mapSize);
                 }
-                map[buffX, buffY] = '♦';
+                map[buffX, buffY] = 'b';
+            }
+
+            /* 
+             * p - ☻ - white
+             * e - ■ - red
+             * b - ✦ - yellow
+             * h - ♥ - blue
+             */
+            for(int row = 0; row < mapSize; ++row) // colors don't work
+            {
+                for(int column = 0; column < mapSize; ++column)
+                {
+                    /*if (map[row, column] == 'p') Console.ForegroundColor = ConsoleColor.Blue;
+                    if (map[row, column] == 'e') Console.ForegroundColor = ConsoleColor.Red;
+                    if (map[row, column] == 'h') Console.ForegroundColor = ConsoleColor.Green;
+                    if (map[row, column] == 'b') Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"{map[row, column]} ");*/
+
+                    switch(map[row, column])
+                    {
+                        case 'p':
+                            //Console.ForegroundColor = ConsoleColor.Green;
+                            map[row, column] = ('▲');
+                            break;
+                        case 'h':
+                            //Console.ForegroundColor = ConsoleColor.Blue;
+                            map[row, column] = ('♥');
+                            break;
+                        case 'e':
+                            //Console.ForegroundColor = ConsoleColor.Red;
+                            map[row, column] = ('■');
+                            break;
+                        case 'b':
+                            //Console.ForegroundColor = ConsoleColor.Yellow;
+                            map[row, column] = ('♦');
+                            break;
+                        Console.Write($"{map[row, column]} ");
+                    }
+                }
             }
             return map;
         }
-        
-        public static void PrintMap(char[,] map) // Printing earlier generated map
+
+        public static void PrintMap(char[,] map)
         {
-            /* 
-                * p - '▲' - white
-                * e - '■' - red
-                * b - '♦' - yellow
-                * h - '♥' - green
-            */
             for (int row = 0; row < mapSize; ++row)
             {
                 if (row == 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(" __________________________________________________");
                 } 
+
                 else if (row == mapSize - 1)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(" __________________________________________________");
-                } 
+                }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.Write("|");
+
                     for (int column = 0; column < mapSize; ++column) 
                     {
-                        if (map[row, column] == '■') Console.ForegroundColor = ConsoleColor.DarkRed;
-                        if (map[row, column] == '♥') Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        if (map[row, column] == '♦') Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write(map[row, column] + " ");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(map[row, column] + " ");//-----------------------------------------------!!!
                     }
-                    Console.WriteLine("|");
+                    writer.WriteLine("|");
                 }
             }
             Console.WriteLine($"HP: {playersHP}\nEnemies: {enemiesCount}\nPower: {playersPower}\nBuff's Time: {buffsTime}");
@@ -148,26 +177,19 @@ namespace mini_game
             {
                 Console.WriteLine("You loose the game :)!");
             }
+            writer.WriteLine($"HP: {playersHP}\nEnemies: {enemiesCount}\nPower: {playersPower}\nBuff's Time: {buffsTime}\nMove's count: {countMoves}");
+            writer.Close();
+
+            Console.Clear();
+            Process.GetCurrentProcess().Kill();           
         }
 
         static void Move()
         {
+            countMoves++;
+
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-            char prevItem = ' ';
-            
-            if (buffFlag) 
-            {
-                buffsTime++;
-            }
-            
-            if (buffsTime >= 5 && buffFlag)
-            {
-                buffsTime = 0;
-                buffFlag = false;
-                playersPower = 5;
-            }
-            
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -192,31 +214,11 @@ namespace mini_game
                     prevItem = map[playerPosition[0], playerPosition[1] + 1];
                     map[playerPosition[0], playerPosition[1]] = ' ';
                     map[playerPosition[0], playerPosition[1] + 1] = '▶';
-                    playerPosition[1] += 1;
                     break;
             }
 
-            switch (prevItem)
-            {
-                case '■':
-                    Fight();
-                    break;
-                case '♦':
-                    buffFlag = true;
-                    Buffs();
-                    break; 
-                case '♥':
-                    Heal();
-                    break;
             }
-            UpdateMap();
         }
-
-        public static void Heal()
-        {
-            playersHP = 30;
-        }
-
         public static void Buffs()
         {
             buffFlag = true;
@@ -245,60 +247,11 @@ namespace mini_game
              }
         }
 
-        static int triesCounter = 1;
-        public static string Hello(string s)
-        {
-            if (s == "start")
-            {
-                Console.WriteLine("Wish you luck! Enjoy the game :)");
-                char[,] mAp = GenerateMap();
-                PrintMap(mAp);
-            }
-            else
-            {
-                switch (triesCounter)
-                {
-                    case 1:
-                        triesCounter++;
-                        Console.WriteLine("It's ok :) When you'll be ready, please, enter {start}");
-                        Hello(Console.ReadLine());
-                        break;
-                    case 2:
-                        triesCounter++;
-                        Console.WriteLine("Just enter {start}, when you're ready.");
-                        Hello(Console.ReadLine());
-                        break;
-                    case 3:
-                        triesCounter++;
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("Enter {start} :)");
-                        Hello(Console.ReadLine());
-                        break;
-                    case 4:
-                        triesCounter++;
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("JUST. ENTER. {START}.");
-                        Hello(Console.ReadLine());
-                        break;
-                    case 5:
-                        triesCounter++;
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("GET OUT!");
-                        break;
-                }   
-            }
-            return s;
-        }
-
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello! Welcome to the {DO NOT ENTER START} game! If you're ready to start enter {start}"); //name of the game
-
-            string startWord = Console.ReadLine();
-            Hello(startWord);
-            
-            Move();
-            UpdateMap();
+            char[,] mAp = GenerateMap();
+            PrintMap(mAp);
+            Move2();
             Console.ReadKey();
         }
     }
