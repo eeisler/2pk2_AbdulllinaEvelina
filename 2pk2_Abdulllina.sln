@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pz-15", "pz-15\pz-15.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pz-16", "pz-16\pz-16.csproj", "{15F5C119-D8A5-46AB-A5F1-BC23FC3B5EA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "minigame", "minigame\minigame.csproj", "{B04BC05C-8B66-45D3-A831-F1FA29F0BFA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{15F5C119-D8A5-46AB-A5F1-BC23FC3B5EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15F5C119-D8A5-46AB-A5F1-BC23FC3B5EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15F5C119-D8A5-46AB-A5F1-BC23FC3B5EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04BC05C-8B66-45D3-A831-F1FA29F0BFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04BC05C-8B66-45D3-A831-F1FA29F0BFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04BC05C-8B66-45D3-A831-F1FA29F0BFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04BC05C-8B66-45D3-A831-F1FA29F0BFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
