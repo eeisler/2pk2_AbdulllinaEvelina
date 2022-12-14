@@ -39,8 +39,6 @@ namespace pz_12
 			double rad;
 			Radius(cat1, cat2, hypot, out rad);
 			Console.WriteLine("The radius equals: " + rad);
-			
-			Console.ReadKey();
 		}
 	}
 }
