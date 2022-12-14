@@ -28,7 +28,7 @@ namespace pz_19
                     break;
                 case 2:
                     string filepath2 = @"D:\work\new\connects.log";
-                    StreamReader srr = new StreamReader(new FileStream(filepath2, FileMode.OpenOrCreate, FileAccess.Read));
+                    StreamReader srr = new StreamReader(new FileStream(filepath2, FileMode.OpenOrCreat e, FileAccess.Read));
 
                     string textFromFile2 = srr.ReadToEnd();
 

@@ -12,11 +12,11 @@ namespace pz_10
 			Console.Write("Enter the string B: "); 
 			string b = Console.ReadLine();
 			
-			if(a.Contains(b))
+			if (a.Contains(b))
 			{
 				string reversed_b = "";
 				
-				for(int i = b.Length-1; i >= 0; i--)
+				for (int i = b.Length-1; i >= 0; i--)
 				{
 					reversed_b += b[i];
 				}
