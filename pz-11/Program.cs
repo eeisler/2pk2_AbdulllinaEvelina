@@ -21,8 +21,6 @@ namespace pz_11
 			
 			Console.Write("\nResult: ");
 			Console.WriteLine(new_text);
-			
-			Console.ReadKey();
 		}
 	}
 }
