@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace pz_22
 {
-    internal class FractionalNumbers
+    public class FractionalNumbers
     {
         public static int positiveCounter = 0;
         public static int negativeCounter = 0;
 
-        private string sign;
-        private int dividend;
-        private int divider = 1;
+        protected string sign;
+        protected int dividend;
+        protected int divider = 1;
 
         public string Sign
         {
@@ -46,7 +46,7 @@ namespace pz_22
             }
         }
 
-        public string GetNumber { get { return $"Result: {this.sign}({this.dividend}/{this.divider})"; } }
+        virtual public string GetNumber { get { return $"Result: {this.sign}({this.dividend}/{this.divider})"; } }
 
         public FractionalNumbers(string sign, int dividend, int divider)
         {
