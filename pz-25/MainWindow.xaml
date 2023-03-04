@@ -21,52 +21,82 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="inputTextBlock" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
-                   FontSize="30" TextAlignment="Right" Background="#202020"></TextBlock>
+        <TextBlock x:Name="infoTextBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
+                   FontSize="40" TextAlignment="Right" Background="#202020" Foreground="White"></TextBlock>
+        
         <Button x:Name="button0" Grid.Row="4" Grid.Column="0" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="0" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="0" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button0_Click"></Button>
+        
         <Button x:Name="button1" Grid.Row="3" Grid.Column="0" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="1" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="1" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button1_Click"></Button>
+        
         <Button x:Name="button2" Grid.Row="3" Grid.Column="1" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="2" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="2" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button2_Click"></Button>
+        
         <Button x:Name="button3" Grid.Row="3" Grid.Column="2" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="3" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="3" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button3_Click"></Button>
+        
         <Button x:Name="button4" Grid.Row="2" Grid.Column="0" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="4" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="4" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button4_Click"></Button>
+        
         <Button x:Name="button5" Grid.Row="2" Grid.Column="1" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="5" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="5" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button5_Click"></Button>
+        
         <Button x:Name="button6" Grid.Row="2" Grid.Column="2" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="6" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="6" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button6_Click"></Button>
+        
         <Button x:Name="button7" Grid.Row="1" Grid.Column="0" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="7" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="7" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button7_Click"></Button>
+        
         <Button x:Name="button8" Grid.Row="1" Grid.Column="1" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="8" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="8" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button8_Click"></Button>
+        
         <Button x:Name="button9" Grid.Row="1" Grid.Column="2" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="9" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"></Button>
+                Content="9" FontSize="20" Background="#3b3b3b" Foreground="White" BorderThickness="0.05"
+                Click="button9_Click"></Button>
+        
         <Button x:Name="buttonPlus" Grid.Row="1" Grid.Column="3" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="+" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"></Button>
+                Content="+" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"
+                Click="buttonPLus_Click"></Button>
+        
         <Button x:Name="buttonMinus" Grid.Row="2" Grid.Column="3" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="-" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"></Button>
+                Content="-" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"
+                Click="buttonMinus_Click"></Button>
+        
         <Button x:Name="buttonMult" Grid.Row="3" Grid.Column="3" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="*" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"></Button>
+                Content="*" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"
+                Click="buttonMult_Click"></Button>
+        
         <Button x:Name="buttonDiv" Grid.Row="4" Grid.Column="3" 
                 HorizontalAlignment="stretch" VerticalAlignment="stretch" 
-                Content="/" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"></Button>
+                Content="/" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"
+                Click="buttonDiv_Click"></Button>
+        
         <Button x:Name="buttonEqual" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                 HorizontalAlignment="stretch" VerticalAlignment="stretch"                 
-                Content="=" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"></Button>
+                Content="=" FontSize="20" Background="#323232" Foreground="White" BorderThickness="0.05"
+                Click="buttonEqual_Click"></Button>
     </Grid>
 </Window>
