@@ -105,17 +105,17 @@ namespace pz_25
 
         private double Caculation(string expression)
         {
-            //string pattern = @"(\d*(\s([\*\/\-\+])\s)\d*)"; do not work
             double result = 0.0;
-            //string[] first = Regex.Split(expression, @"^\d+");
-            //string[] second = Regex.Split(expression, @"\s(\d+)");
-            //string[] oprtr = Regex.Split(expression, @"[\*\/\-\+]");
-            string[] first = Regex.Split(expression, @"(\s([\*\/\-\+])\s)");
-            string[] second = Regex.Split(expression, @"\s(\d+)");
-            string[] oprtr = Regex.Split(expression, @"[\*\/\-\+]");
-            double firstOperand = Convert.ToDouble(first[0]);
-            double secondOperand = Convert.ToDouble(second[0]);
-            char operation = Convert.ToChar(oprtr[0]);
+            Regex first = new Regex(@"\d+");
+            MatchCollection op12 = first.Matches(expression);
+
+            Regex rg = new Regex(@"[\*\/\-\+]");
+            MatchCollection oprt = rg.Matches(expression);
+
+            double firstOperand = Convert.ToDouble(op12[0].Value);
+            double secondOperand = Convert.ToDouble(op12[1].Value);
+            char operation = Convert.ToChar(oprt[0].Value);
+
 
             switch (operation)
             {
