@@ -106,14 +106,15 @@ namespace pz_25
         private double Caculation(string expression)
         {
             double result = 0.0;
-            Regex first = new Regex(@"\d+");
-            MatchCollection op12 = first.Matches(expression);
+
+            Regex first = new Regex(@"(0|[1-9]\d*)([.,]\d+)?");
+            MatchCollection operands = first.Matches(expression);
 
             Regex rg = new Regex(@"[\*\/\-\+]");
             MatchCollection oprt = rg.Matches(expression);
 
-            double firstOperand = Convert.ToDouble(op12[0].Value);
-            double secondOperand = Convert.ToDouble(op12[1].Value);
+            double firstOperand = Convert.ToDouble(operands[0].Value);
+            double secondOperand = Convert.ToDouble(operands[1].Value);
             char operation = Convert.ToChar(oprt[0].Value);
 
 
