@@ -1,0 +1,49 @@
+﻿<Window x:Class="pz_26_TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pz_26_TextEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Menu Background="#232323" BorderThickness="0.03" Foreground="#d3d3d3" BorderBrush="#232323">
+                <MenuItem Header="File" BorderThickness="0.03" FontFamily="Arial Rounded MT Bold">
+                    <MenuItem Header="New" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
+                    <MenuItem Header="Open" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
+                    <MenuItem Header="Save" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
+                    <MenuItem Header="Delete" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="About" FontFamily="Arial Rounded MT Bold"></MenuItem>
+            </Menu>
+            <WrapPanel Background="#232323" >
+
+                <Button x:Name="Italics" Background="#8b8b8b" BorderThickness="0.03">
+                    <Image Source="/icons/italic_em_emphasis_format_editor_tool_icon_145968.png"
+                               Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="Bold" Background="#8b8b8b" BorderThickness="0.03">
+                    <Image Source="/icons/bold_format_editor_tool_icon_146015.png"
+                               Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="Underline" Background="#8b8b8b" BorderThickness="0.03" >
+                    <Image Source="/icons/underline_format_editor_tool_icon_145920.png"
+                     Width="20" Height="20"/>
+                </Button>
+
+            </WrapPanel>
+        </StackPanel>
+
+        <StatusBar DockPanel.Dock="Bottom">
+        </StatusBar>
+        
+        <ListBox MinWidth="200" Background="#232323" BorderThickness="0.03">
+        </ListBox>
+        
+        <RichTextBox Background="#2d2d2d" BorderThickness="0.03"></RichTextBox>
+        
+    </DockPanel>
+</Window>

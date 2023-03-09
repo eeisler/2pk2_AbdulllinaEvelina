@@ -113,10 +113,12 @@ namespace pz_25
             Regex rg = new Regex(@"[\*\/\-\+]");
             MatchCollection oprt = rg.Matches(expression);
 
-            double firstOperand = Convert.ToDouble(operands[0].Value);
-            double secondOperand = Convert.ToDouble(operands[1].Value);
-
             char operation = ' ';
+            double firstOperand = 0.0;
+            double secondOperand = 0.0;
+
+            firstOperand = Convert.ToDouble(operands[0].Value);
+            secondOperand = Convert.ToDouble(operands[1].Value);
 
             try
             {
