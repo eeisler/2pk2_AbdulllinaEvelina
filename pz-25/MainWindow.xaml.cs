@@ -115,8 +115,17 @@ namespace pz_25
 
             double firstOperand = Convert.ToDouble(operands[0].Value);
             double secondOperand = Convert.ToDouble(operands[1].Value);
-            char operation = Convert.ToChar(oprt[1].Value);
 
+            char operation = ' ';
+
+            try
+            {
+                operation = Convert.ToChar(oprt[1].Value);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                operation = Convert.ToChar(oprt[0].Value);
+            }
 
             switch (operation)
             {
