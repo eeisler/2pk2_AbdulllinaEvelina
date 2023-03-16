@@ -9,7 +9,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
             <Menu Background="#232323" BorderThickness="0.03" Foreground="#d3d3d3" BorderBrush="#232323">
-                <MenuItem Header="File" BorderThickness="0.03" FontFamily="Arial Rounded MT Bold">
+                <MenuItem Header="File" BorderThickness="0.03" FontFamily="Arial MT Bold">
                     <MenuItem Header="New" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
                     <MenuItem Header="Open" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
                     <MenuItem Header="Save" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
@@ -34,7 +34,8 @@
                      Width="20" Height="20"/>
                 </Button>
 
-            </WrapPanel>
+            </WrapPanel>            
+            
         </StackPanel>
 
         <StatusBar DockPanel.Dock="Bottom">
