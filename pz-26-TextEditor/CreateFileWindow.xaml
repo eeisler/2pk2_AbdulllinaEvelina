@@ -16,7 +16,7 @@
 
         <TextBlock FontFamily="Arial MT Bold" FontSize="14" Foreground="#d3d3d3">Enter the file name:</TextBlock>
         <TextBox x:Name="fileNameBox" Grid.Row="1" Width="260" Height="23" Background="#d3d3d3"
-                VerticalContentAlignment="Center"></TextBox>
+                VerticalContentAlignment="Center" FontFamily="Arial MT Bold"></TextBox>
         
         <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,0">
             <Button IsDefault="True" Click="Accept_Click" Width="65"

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pz_26_TextEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#232323">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top">
-            <Menu Background="#232323" BorderThickness="0.03" Foreground="#d3d3d3" BorderBrush="#232323">
-                <MenuItem Header="File" BorderThickness="0.03" FontFamily="Arial MT Bold">
+        <StackPanel DockPanel.Dock="Top" Height="50" VerticalAlignment="Center">
+            <Menu Height="25" Background="#232323" BorderThickness="0.03" Foreground="#d3d3d3" BorderBrush="#232323">
+                <MenuItem Header="File" FontSize="14" BorderThickness="0.03" FontFamily="Arial MT Bold" Height="25" Margin="0, 0, 5, 0">
                     <MenuItem x:Name="newMenuItem" Header="New" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
                               Click="newMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="openMenuItem" Header="Open" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
@@ -19,34 +19,33 @@
                     <MenuItem x:Name="deleteMenuItem" Header="Delete" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
                               Click="deleteMenuItem_Click"></MenuItem>
                 </MenuItem>
-                <MenuItem x:Name="aboutMenuItem" Header="About" FontFamily="Arial Rounded MT Bold"
-                          Click="aboutMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="aboutMenuItem" Header="About" FontSize="14" Height="25" FontFamily="Arial Rounded MT Bold"
+                          Click="aboutMenuItem_Click"/>
             </Menu>
-            <WrapPanel Background="#232323" >
+            <WrapPanel Background="#232323" Height="30">
 
-                <Button x:Name="Italics" Background="#d3d3d3" BorderThickness="0.01">
+                <Button x:Name="Italics" Background="#232323" BorderThickness="0" >
                     <Image Source="/icons/italic_em_emphasis_format_editor_tool_icon_145968.png"
-                               Width="20" Height="20"/>
+                               Width="25" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
 
-                <Button x:Name="Bold" Background="#d3d3d3" BorderThickness="0.01">
+                <Button x:Name="Bold" Background="#232323" BorderThickness="0">
                     <Image Source="/icons/bold_format_editor_tool_icon_146015.png"
-                               Width="20" Height="20"/>
+                               Width="25" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
-
-                <Button x:Name="Underline" Background="#d3d3d3" BorderThickness="0.01" >
+                <Button x:Name="Underline" Background="#232323" BorderThickness="0" >
                     <Image Source="/icons/underline_format_editor_tool_icon_145920.png"
-                     Width="20" Height="20"/>
+                               Width="25" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
 
-            </WrapPanel>            
-            
+            </WrapPanel>
+
         </StackPanel>
 
         <StatusBar DockPanel.Dock="Bottom">
         </StatusBar>
-        
-        <ListBox MinWidth="200" Background="#232323" BorderThickness="0.03">
+
+        <ListBox MinWidth="200" Background="#232323" BorderThickness="0.03" SelectionChanged="ListBox_SelectionChanged">
         </ListBox>
 
         <RichTextBox Background="#2d2d2d" BorderThickness="0.03" Foreground="#d3d3d3" 
@@ -56,6 +55,6 @@
                 <Paragraph LineHeight="1"></Paragraph>
             </FlowDocument>
         </RichTextBox>
-        
+
     </DockPanel>
 </Window>

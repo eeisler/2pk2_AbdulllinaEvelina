@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pz_26_TextEditor"
         mc:Ignorable="d"
-        Title="About" Height="300" Width="500" ResizeMode="NoResize">
-    <Grid Background="#2d2d2d">
+        Title="About" Height="300" Width="500" ResizeMode="NoResize" Background="#232323">
+    <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="50"> </RowDefinition>
             <RowDefinition Height="auto"> </RowDefinition>
