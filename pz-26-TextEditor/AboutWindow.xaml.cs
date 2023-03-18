@@ -14,19 +14,11 @@ using System.Windows.Shapes;
 
 namespace pz_26_TextEditor
 {
-    public partial class CreateFileWindow : Window
+    public partial class AboutWindow : Window
     {
-        public CreateFileWindow()
+        public AboutWindow()
         {
             InitializeComponent();
-        }
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = true;
-        }
-        public string FileName
-        {
-            get { return fileNameBox.Text; }
         }
     }
 }

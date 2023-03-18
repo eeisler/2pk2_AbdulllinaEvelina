@@ -1,0 +1,28 @@
+﻿<Window x:Class="pz_26_TextEditor.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pz_26_TextEditor"
+        mc:Ignorable="d"
+        Title="About" Height="300" Width="500" ResizeMode="NoResize">
+    <Grid Background="#2d2d2d">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50"> </RowDefinition>
+            <RowDefinition Height="auto"> </RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock FontFamily="Arial MT Bold" Foreground="#d3d3d3" Margin="5" Grid.Row="0" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">
+            Header
+        </TextBlock>
+            <TextBlock FontFamily="Arial MT Bold" Foreground="#d3d3d3" TextWrapping="Wrap" Margin="20, 5, 20, 20" Grid.Row="1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum auctor magna congue, consectetur turpis ac, congue enim.
+            Etiam cursus fermentum feugiat. Sed vulputate odio odio, ut pretium purus ullamcorper et. Duis tortor dui, consectetur sodales euismod sed, tincidunt eu nibh. 
+            Phasellus vestibulum pharetra ornare. Pellentesque in ornare lorem, a pharetra tortor. 
+            Pellentesque sed ornare metus. Donec luctus placerat molestie. Nullam vestibulum lectus congue, euismod justo vitae, ornare magna. Pellentesque bibendum est nunc, placerat tristique purus mattis a. Phasellus eget neque lorem.
+            Pellentesque euismod ac dolor sit amet sagittis. Curabitur nec laoreet mauris. Phasellus condimentum elit vitae mauris gravida, vel convallis leo viverra. Praesent ornare, ligula a consequat dapibus, odio neque luctus velit, quis dictum nulla orci sit amet ligula.
+            Etiam vestibulum cursus mi id suscipit.
+        </TextBlock>
+    </Grid>
+</Window>

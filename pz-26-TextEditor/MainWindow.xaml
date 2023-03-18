@@ -10,26 +10,31 @@
         <StackPanel DockPanel.Dock="Top">
             <Menu Background="#232323" BorderThickness="0.03" Foreground="#d3d3d3" BorderBrush="#232323">
                 <MenuItem Header="File" BorderThickness="0.03" FontFamily="Arial MT Bold">
-                    <MenuItem Header="New" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
-                    <MenuItem Header="Open" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
-                    <MenuItem Header="Save" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
-                    <MenuItem Header="Delete" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"></MenuItem>
+                    <MenuItem x:Name="newMenuItem" Header="New" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
+                              Click="newMenuItem_Click"></MenuItem>
+                    <MenuItem x:Name="openMenuItem" Header="Open" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
+                              Click="openMenuItem_Click"></MenuItem>
+                    <MenuItem x:Name="saveMenuItem" Header="Save" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
+                              Click="saveMenuItem_Click"></MenuItem>
+                    <MenuItem x:Name="deleteMenuItem" Header="Delete" Background="#232323" BorderBrush="#232323" BorderThickness="0.03"
+                              Click="deleteMenuItem_Click"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="About" FontFamily="Arial Rounded MT Bold"></MenuItem>
+                <MenuItem x:Name="aboutMenuItem" Header="About" FontFamily="Arial Rounded MT Bold"
+                          Click="aboutMenuItem_Click"></MenuItem>
             </Menu>
             <WrapPanel Background="#232323" >
 
-                <Button x:Name="Italics" Background="#8b8b8b" BorderThickness="0.03">
+                <Button x:Name="Italics" Background="#d3d3d3" BorderThickness="0.01">
                     <Image Source="/icons/italic_em_emphasis_format_editor_tool_icon_145968.png"
                                Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="Bold" Background="#8b8b8b" BorderThickness="0.03">
+                <Button x:Name="Bold" Background="#d3d3d3" BorderThickness="0.01">
                     <Image Source="/icons/bold_format_editor_tool_icon_146015.png"
                                Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="Underline" Background="#8b8b8b" BorderThickness="0.03" >
+                <Button x:Name="Underline" Background="#d3d3d3" BorderThickness="0.01" >
                     <Image Source="/icons/underline_format_editor_tool_icon_145920.png"
                      Width="20" Height="20"/>
                 </Button>
@@ -46,8 +51,11 @@
 
         <RichTextBox Background="#2d2d2d" BorderThickness="0.03" Foreground="#d3d3d3" 
                      SpellCheck.IsEnabled="True" Language="ru-ru" AcceptsReturn="True" AcceptsTab="True"
-                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                     FontStretch ="Condensed"></RichTextBox>
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <FlowDocument>
+                <Paragraph LineHeight="1"></Paragraph>
+            </FlowDocument>
+        </RichTextBox>
         
     </DockPanel>
 </Window>
