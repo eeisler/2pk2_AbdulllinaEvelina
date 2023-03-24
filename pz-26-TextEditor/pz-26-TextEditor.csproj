@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <None Remove="icons\bold_format_editor_tool_icon_146015.png" />
-    <None Remove="icons\Icon-192.png" />
     <None Remove="icons\Icon-512.png" />
     <None Remove="icons\Icon-maskable-192.png" />
     <None Remove="icons\Icon-maskable-512.png" />
@@ -23,7 +22,6 @@
 
   <ItemGroup>
     <Resource Include="icons\bold_format_editor_tool_icon_146015.png" />
-    <Resource Include="icons\Icon-192.png" />
     <Resource Include="icons\Icon-512.png" />
     <Resource Include="icons\Icon-maskable-192.png" />
     <Resource Include="icons\Icon-maskable-512.png" />
