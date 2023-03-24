@@ -14,21 +14,14 @@ using System.Windows.Shapes;
 
 namespace pz_26_TextEditor
 {
-    public partial class CreateFileWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для Error.xaml
+    /// </summary>
+    public partial class Error : Window
     {
-        internal string filename;
-        
-        public CreateFileWindow()
+        public Error()
         {
             InitializeComponent();
-        }
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = true;
-        }
-        public string FileName
-        {
-            get { return fileNameBox.Text; }
         }
     }
 }
