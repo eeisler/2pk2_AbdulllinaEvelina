@@ -20,11 +20,14 @@ namespace pz_26_TextEditor
     public partial class MainWindow : Window
     {
         private string filename;
+        string currentfilename;
         string path = @"C:\Users\Александр\Source\Repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
         public MainWindow()
         {
             InitializeComponent();
+            ListFunction();
         }
+        
         private void newMenuItem_Click(object sender, RoutedEventArgs e)
         {
             CreateFileWindow createFileWindow = new CreateFileWindow();
@@ -34,7 +37,8 @@ namespace pz_26_TextEditor
                 if (createFileWindow.ShowDialog() == true)
                 {
                     filename = createFileWindow.FileName;
-                    FileStream file = new FileStream(path + filename + ".txt", FileMode.CreateNew);
+                    FileFunctional.CreateFile(path, filename);
+                    ListFunction();
                 }
             }
             catch (System.IO.IOException)
@@ -46,33 +50,18 @@ namespace pz_26_TextEditor
 
         private void openMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fd = new OpenFileDialog();
-            fd.FileName = "Document"; // Default file name
-            fd.DefaultExt = ".txt"; // Default file extension
-            fd.Filter = "Text documents (.txt)|*.txt";// Filter files by extension
-            if (fd.ShowDialog() == true)
-            {
-                FileStream fileStream = new FileStream(fd.FileName, FileMode.Open);
-                TextRange range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
-                range.Load(fileStream, DataFormats.Text);
-            }
+            FileFunctional.OpenFile(path, currentfilename, RTB);
         }
         private void saveMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog fd = new SaveFileDialog();
-            fd.FileName = "Document"; // Default file name
-            fd.DefaultExt = ".txt"; // Default file extension
-            fd.Filter = "Text documents (.txt)|*.txt";// Filter files by extension
-            if (fd.ShowDialog() == true)
-            {
-                FileStream fileStream = new FileStream(fd.FileName, FileMode.Create);
-                TextRange range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
-                range.Save(fileStream, DataFormats.Text);
-            }
+            FileFunctional.SaveFile(path, currentfilename, RTB);
         }
         private void deleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            //FileFunctional.DeleteFile(path, currentfilename);
+            File.Delete(currentfilename);
+            currentfilename = List.Items[0].ToString();
+            ListFunction();
         }
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -80,9 +69,18 @@ namespace pz_26_TextEditor
             aboutWindow.ShowDialog();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        internal void ListFunction()
         {
+            var dir = new DirectoryInfo("C:\\Users\\Александр\\Source\\Repos\\eeisler\\Sharp_2pk2_AbdulllinaER\\pz-26-TextEditor\\data\\");
+            FileInfo[] files = dir.GetFiles("*.txt");
+            List.Items.Refresh();
+            List.ItemsSource = files;
+            List.DisplayMemberPath = "Name";
+        }
 
+        internal void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentfilename = List.SelectedItem.ToString();
         }
     }
 }
