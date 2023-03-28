@@ -20,7 +20,7 @@ namespace pz_26_TextEditor
     public partial class MainWindow : Window
     {
         private string filename;
-        string currentfilename;
+        public string currentfilename;
         string path = @"C:\Users\Александр\Source\Repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
         public MainWindow()
         {
@@ -50,17 +50,19 @@ namespace pz_26_TextEditor
 
         private void openMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            RTB.Document.Blocks.Clear();
             FileFunctional.OpenFile(path, currentfilename, RTB);
         }
         private void saveMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            Saved saved = new Saved();
             FileFunctional.SaveFile(path, currentfilename, RTB);
+            saved.ShowDialog();
         }
         private void deleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //FileFunctional.DeleteFile(path, currentfilename);
-            File.Delete(currentfilename);
-            currentfilename = List.Items[0].ToString();
+            RTB.Document.Blocks.Clear();
+            FileFunctional.DeleteFile(currentfilename);
             ListFunction();
         }
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
@@ -73,14 +75,18 @@ namespace pz_26_TextEditor
         {
             var dir = new DirectoryInfo("C:\\Users\\Александр\\Source\\Repos\\eeisler\\Sharp_2pk2_AbdulllinaER\\pz-26-TextEditor\\data\\");
             FileInfo[] files = dir.GetFiles("*.txt");
-            List.Items.Refresh();
             List.ItemsSource = files;
             List.DisplayMemberPath = "Name";
         }
 
         internal void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentfilename = List.SelectedItem.ToString();
+            RTB.Document.Blocks.Clear();
+
+            if (List.SelectedItem != null)
+            {
+                currentfilename = List.SelectedItem.ToString();
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace pz_26_TextEditor
         }
         internal static void SaveFile(string path, string currentfilename, System.Windows.Controls.RichTextBox RTB)
         {
-            using (FileStream fileStream = new FileStream(currentfilename, FileMode.Append))
+            using (FileStream fileStream = new FileStream(currentfilename, FileMode.Create))
             {
                 TextRange range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
                 range.Save(fileStream, DataFormats.Text);
@@ -34,7 +34,7 @@ namespace pz_26_TextEditor
                 range.Load(fileStream, DataFormats.Text);
             }
         }
-        internal static void DeleteFile(string path, string currentfilename)
+        internal static void DeleteFile(string currentfilename)
         {
             File.Delete(currentfilename);
         }
