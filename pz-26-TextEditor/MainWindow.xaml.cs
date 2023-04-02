@@ -78,7 +78,6 @@ namespace pz_26_TextEditor
             List.ItemsSource = files;
             List.DisplayMemberPath = "Name";
         }
-
         internal void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RTB.Document.Blocks.Clear();
@@ -87,6 +86,36 @@ namespace pz_26_TextEditor
             {
                 currentfilename = List.SelectedItem.ToString();
             }
+        }
+
+        private void Italics_Click(object sender, RoutedEventArgs e)
+        {
+            if (RTB.Selection != null)
+            {
+                RTB.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+            }
+            else
+                RTB.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, null);
+        }
+
+        private void Bold_Click(object sender, RoutedEventArgs e)
+        {
+            if (RTB.Selection != null)
+            {
+                RTB.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+            }
+            else
+                RTB.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, null);
+        }
+
+        private void Underline_Click(object sender, RoutedEventArgs e)
+        {
+            if (RTB.Selection != null)
+            {
+                RTB.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+            }
+            else
+                RTB.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
         }
     }
 }

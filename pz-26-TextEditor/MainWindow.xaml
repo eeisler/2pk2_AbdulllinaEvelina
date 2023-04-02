@@ -24,16 +24,16 @@
             </Menu>
             <WrapPanel Background="#232323" Height="30">
 
-                <Button x:Name="Italics" Background="#232323" BorderThickness="0" >
+                <Button x:Name="Italics" Background="#232323" BorderThickness="0" Click="Italics_Click">
                     <Image Source="/icons/italic_em_emphasis_format_editor_tool_icon_145968.png"
                                Width="25" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
 
-                <Button x:Name="Bold" Background="#232323" BorderThickness="0">
+                <Button x:Name="Bold" Background="#232323" BorderThickness="0" Click="Bold_Click">
                     <Image Source="/icons/bold_format_editor_tool_icon_146015.png"
                                Width="25" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
-                <Button x:Name="Underline" Background="#232323" BorderThickness="0" >
+                <Button x:Name="Underline" Background="#232323" BorderThickness="0" Click="Underline_Click">
                     <Image Source="/icons/underline_format_editor_tool_icon_145920.png"
                                Width="25" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Button>
