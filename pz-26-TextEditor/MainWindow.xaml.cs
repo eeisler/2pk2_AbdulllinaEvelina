@@ -117,5 +117,7 @@ namespace pz_26_TextEditor
             else
                 RTB.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
         }
+       
+
     }
 }
