@@ -10,10 +10,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace pz_26_TextEditor
 {
@@ -21,7 +23,10 @@ namespace pz_26_TextEditor
     {
         private string filename;
         public string currentfilename;
-        string path = @"C:\Users\Александр\Source\Repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
+        //static string basePath = Environment.CurrentDirectory;
+        static string relativePath = @"С:data/";
+        string path = Path.GetFullPath(relativePath);
+        //string path = @"C:\Users\Александр\source\repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
         public MainWindow()
         {
             InitializeComponent();
@@ -73,7 +78,7 @@ namespace pz_26_TextEditor
 
         internal void ListFunction()
         {
-            var dir = new DirectoryInfo("C:\\Users\\Александр\\Source\\Repos\\eeisler\\Sharp_2pk2_AbdulllinaER\\pz-26-TextEditor\\data\\");
+            var dir = new DirectoryInfo(path);
             FileInfo[] files = dir.GetFiles("*.txt");
             List.ItemsSource = files;
             List.DisplayMemberPath = "Name";

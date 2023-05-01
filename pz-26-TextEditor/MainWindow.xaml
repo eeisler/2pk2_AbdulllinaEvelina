@@ -50,7 +50,7 @@
         </ListBox>
 
         <RichTextBox x:Name="RTB" Background="#2d2d2d" BorderThickness="0.03" Foreground="#d3d3d3"  
-                     SpellCheck.IsEnabled="True" Language="ru-ru" AcceptsReturn="True" AcceptsTab="True"
+                     SpellCheck.IsEnabled="True" Language="ru-en" AcceptsReturn="True" AcceptsTab="True"
                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontSize="14"
                      Block.LineHeight="1">
         </RichTextBox>
