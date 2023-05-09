@@ -23,10 +23,10 @@ namespace pz_26_TextEditor
     {
         private string filename;
         public string currentfilename;
-        //static string basePath = Environment.CurrentDirectory;
-        static string relativePath = @"С:data/";
-        string path = Path.GetFullPath(relativePath);
-        //string path = @"C:\Users\Александр\source\repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
+        /*static string basePath = Environment.CurrentDirectory;
+        static string relativePath = @".data/";
+        string path = Path.GetFullPath(relativePath);*/
+        string path = @"C:\Users\Александр\source\repos\eeisler\Sharp_2pk2_AbdulllinaER\pz-26-TextEditor\data\";
         public MainWindow()
         {
             InitializeComponent();
