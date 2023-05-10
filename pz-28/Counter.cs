@@ -8,7 +8,7 @@ namespace pz_28
 {
     class Counter
     {
-        public event Delegate WaitEvent;
+        public event Delegate1 WaitEvent;
         public void RaiseWaitEvent(int n) => WaitEvent?.Invoke(n);
         public void Count()
         {
