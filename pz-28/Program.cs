@@ -2,11 +2,11 @@
 
 namespace pz_28
 {
-    delegate void Delegate1(int n);
-    delegate void Delegate2(int c);
+    delegate void Delegate(int n);
+
     internal class Program
-    {
-        public static event Delegate2 ControllVisitor;
+    {        
+        public static event Delegate ControllVisitor;
         public static void RaiseControllEvent(int c) => ControllVisitor?.Invoke(c);
         static void Main(string[] args)
         {       
@@ -29,15 +29,15 @@ namespace pz_28
 
                 case 5:
                     Controller controller = new Controller();
-                    while (Visitor.counter < 3)
+                    ControllVisitor += controller.Controll;
+
+                    while (Controller.flag)
                     {
                         Console.Write("Enter the name: ");
                         string name = Console.ReadLine();
                         Visitor v = new Visitor(name);
-                        Visitor.counter++;
-                    }
-                    ControllVisitor += controller.Controll;
-                    RaiseControllEvent(Visitor.counter);
+                        RaiseControllEvent(Visitor.counter);
+                    }              
                     break;
             }
 

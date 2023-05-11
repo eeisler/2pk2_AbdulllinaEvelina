@@ -16,9 +16,10 @@ namespace pz_28
             get { return name; }
             set { name = value; }
         }
-        public Visitor(string n) 
+        public Visitor(string name) 
         { 
-            Name = n;
+            Name = name;
+            counter++;
         }
     }
 }
